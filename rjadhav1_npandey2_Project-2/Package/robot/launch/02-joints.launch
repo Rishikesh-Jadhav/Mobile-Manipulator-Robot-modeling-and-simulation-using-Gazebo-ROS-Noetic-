@@ -1,0 +1,38 @@
+
+<launch>
+
+<arg name="model" default="$(find robot_arm)/urdf/04-robot_arm_servo.urdf.xacro"/>
+<arg name="rvizconfig" default="$(find robot_arm)/rviz/robot_arm.rviz"/>
+
+<!-- Launch gazebo -->
+<include file="$(find robot_arm)/launch/gazebo.launch">
+   <arg name="model" value="$(arg model)"/>
+</include>
+
+<!-- Load joint controller configuration from YAML file to parameter server -->
+<rosparam file="$(find robot_arm)/config/robot_arm_control.yaml" command="load"/>
+
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"/>
+
+<!-- load the controllers -->
+<node name="robot_arm_controller_spawner" pkg="controller_manager" type="spawner"
+  respawn="true" output="screen" 
+   args="/Robot_Arm/joint_state_controller
+         /Robot_Arm/Shoulder_pan_position_controller
+         /Robot_Arm/Shoulder_roll_position_controller
+         /Robot_Arm/Elbow_pan_position_controller
+         /Robot_Arm/Elbow_pitch_position_controller
+         /Robot_Arm/Gripper_pan_position_controller
+         /Robot_Arm/Gripper_pitch_position_controller
+      --shutdown-timeout 3"/>
+
+<!-- convert joint states to TF transforms for rviz, etc -->
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+</node>
+
+</launch>
+
+
+
+

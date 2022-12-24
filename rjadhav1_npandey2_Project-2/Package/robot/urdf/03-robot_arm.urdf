@@ -1,0 +1,864 @@
+<?xml version="1.0" ?>
+
+<robot name="Robot_Arm">
+  <!-- /////////////////////////////////////////////////////////////////-->
+  <!-- Include materials-->
+  <material name="Black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="White">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+  <material name="Blue">
+    <color rgba="0.0 0.0 1.0 1.0"/>
+  </material>
+  <material name="Green">
+    <color rgba="0.0 1.0 0.0 1.0"/>
+  </material>
+
+  <!-- ////////////////////////////////////////////////////////////-->
+  <!-- chassis-->
+  <link name="chassis">
+    <visual>
+      <origin rpy="-1.57 0 1.57" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/base assembly.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="-1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/base assembly.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <gazebo reference="chassis">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <!-- ///////////////////      Wheels      ///////////////////////   -->
+  <link name="right_front_wheel">
+    <visual>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.022" radius="0.011"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.022" radius="0.011"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="2.48722222222e-05" ixy="0.0" ixz="0.0" iyy="2.48722222222e-05" iyz="0.0" izz="3.3611111111e-05"/>
+    </inertial>
+  </link>
+  <link name="right_front_wheel1">
+    <visual>
+      <origin rpy="0  1.57 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/tyre11.dae"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.57 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/tyre11.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="0.000159316666667" ixy="0.0" ixz="0.0" iyy="0.000159316666667" iyz="0.0" izz="0.0003025"/>
+    </inertial>
+  </link>
+  <gazebo reference="right_front_wheel1">
+    <material>Gazebo/Black</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="right_front_wheel_joint1" type="fixed">
+    <parent link="right_front_wheel"/>
+    <child link="right_front_wheel1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <gazebo reference="right_front_wheel">
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <joint name="right_front_wheel_joint" type="continuous">
+    <parent link="chassis"/>
+    <child link="right_front_wheel"/>
+    <origin rpy="0 0 0" xyz="0.062 -0.115  0.015"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <transmission name="right_front_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="right_front_wheel_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="right_front_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <link name="right_back_wheel">
+    <visual>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.022" radius="0.011"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.022" radius="0.011"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="2.48722222222e-05" ixy="0.0" ixz="0.0" iyy="2.48722222222e-05" iyz="0.0" izz="3.3611111111e-05"/>
+    </inertial>
+  </link>
+  <link name="right_back_wheel1">
+    <visual>
+      <origin rpy="0  1.57 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/tyre11.dae"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.57 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/tyre11.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="0.000159316666667" ixy="0.0" ixz="0.0" iyy="0.000159316666667" iyz="0.0" izz="0.0003025"/>
+    </inertial>
+  </link>
+  <gazebo reference="right_back_wheel1">
+    <material>Gazebo/Black</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="right_back_wheel_joint1" type="fixed">
+    <parent link="right_back_wheel"/>
+    <child link="right_back_wheel1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <gazebo reference="right_back_wheel">
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <joint name="right_back_wheel_joint" type="continuous">
+    <parent link="chassis"/>
+    <child link="right_back_wheel"/>
+    <origin rpy="0 0 0" xyz="-0.058 -0.115  0.015"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <transmission name="right_back_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="right_back_wheel_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="right_back_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <link name="left_front_wheel">
+    <visual>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.022" radius="0.011"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.022" radius="0.011"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="2.48722222222e-05" ixy="0.0" ixz="0.0" iyy="2.48722222222e-05" iyz="0.0" izz="3.3611111111e-05"/>
+    </inertial>
+  </link>
+  <link name="left_front_wheel1">
+    <visual>
+      <origin rpy="0  1.57 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/tyre11.dae"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.57 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/tyre11.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="0.000159316666667" ixy="0.0" ixz="0.0" iyy="0.000159316666667" iyz="0.0" izz="0.0003025"/>
+    </inertial>
+  </link>
+  <gazebo reference="left_front_wheel1">
+    <material>Gazebo/Black</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="left_front_wheel_joint1" type="fixed">
+    <parent link="left_front_wheel"/>
+    <child link="left_front_wheel1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <gazebo reference="left_front_wheel">
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <joint name="left_front_wheel_joint" type="continuous">
+    <parent link="chassis"/>
+    <child link="left_front_wheel"/>
+    <origin rpy="0 0 0" xyz="0.062 0.115  0.015"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <transmission name="left_front_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="left_front_wheel_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="left_front_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <link name="left_back_wheel">
+    <visual>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.022" radius="0.011"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.022" radius="0.011"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="2.48722222222e-05" ixy="0.0" ixz="0.0" iyy="2.48722222222e-05" iyz="0.0" izz="3.3611111111e-05"/>
+    </inertial>
+  </link>
+  <link name="left_back_wheel1">
+    <visual>
+      <origin rpy="0  1.57 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/tyre11.dae"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.57 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/tyre11.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="0.000159316666667" ixy="0.0" ixz="0.0" iyy="0.000159316666667" iyz="0.0" izz="0.0003025"/>
+    </inertial>
+  </link>
+  <gazebo reference="left_back_wheel1">
+    <material>Gazebo/Black</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="left_back_wheel_joint1" type="fixed">
+    <parent link="left_back_wheel"/>
+    <child link="left_back_wheel1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <gazebo reference="left_back_wheel">
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <joint name="left_back_wheel_joint" type="continuous">
+    <parent link="chassis"/>
+    <child link="left_back_wheel"/>
+    <origin rpy="0 0 0" xyz="-0.058 0.115  0.015"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <transmission name="left_back_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="left_back_wheel_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="left_back_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <!-- /////////////////////////////////////////////////// -->
+  <!-- shoulder pan link -->
+  <link name="shoulder_pan_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.0235 -0.0145 0.075"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/mid-arm.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0235 -0.0145 0.075"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/mid-arm.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="shoulder_pan_joint" type="revolute">
+    <parent link="chassis"/>
+    <child link="shoulder_pan_link"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0.07"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100" lower="-2.00" upper="1.57" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <!--  SERVO shoulder pan link motor-->
+  <link name="servo_shoulder_roll">
+    <visual>
+      <origin rpy="4.71 0 1.57" xyz="-0.015 0.04 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/Servo Motor.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="4.71 0 1.57" xyz="-0.015 0.04 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/Servo Motor.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <gazebo reference="servo_shoulder_roll">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="servo_joint1" type="fixed">
+    <parent link="shoulder_pan_link"/>
+    <child link="servo_shoulder_roll"/>
+    <origin rpy="0 0 0" xyz="-0.004 -0.002 0.080"/>
+  </joint>
+  <!-- //////////////////////////////////////////////////////////////////////////////-->
+  <link name="shoulder_roll_link">
+    <visual>
+      <origin rpy="3.14 0 0" xyz="-0.0275 0.0155 -0.015"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/mid-arm.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="3.14 0 0" xyz="-0.0275 0.0155 -0.015"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/mid-arm.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="shoulder_roll_joint" type="revolute">
+    <parent link="shoulder_pan_link"/>
+    <child link="shoulder_roll_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.06"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" lower="-1.57" upper="2.00" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <!-- SERVO elbow roll motor-->
+  <link name="servo_elbow_pan">
+    <visual>
+      <origin rpy="3.14 0 3.14" xyz="-0.035 -0.016 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/Servo Motor.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="3.14 0 3.14" xyz="-0.035 -0.016 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/Servo Motor.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <gazebo reference="servo_elbow_pan">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="servo_joint2" type="fixed">
+    <parent link="shoulder_roll_link"/>
+    <child link="servo_elbow_pan"/>
+    <origin rpy="0 0 0" xyz="0 0 0.040"/>
+  </joint>
+  <!--/////////////////////////////////////////////////////////////////////////////////////-->
+  <link name="elbow_pan_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.0235 -0.0125 0.09"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/mid-arm.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0235 -0.0125 0.09"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/mid-arm.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="elbow_pan_joint" type="revolute">
+    <parent link="shoulder_roll_link"/>
+    <child link="elbow_pan_link"/>
+    <origin rpy="0 0 1.57" xyz="0 0 0.08"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <!--  SERVO wrist roll link motor-->
+  <link name="servo_wrist_roll">
+    <visual>
+      <origin rpy="4.71 0 1.57" xyz="-0.015 0.04 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/Servo Motor.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="4.71 0 1.57" xyz="-0.015 0.04 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/Servo Motor.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <gazebo reference="servo_wrist_roll">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="servo_joint3" type="fixed">
+    <parent link="elbow_pan_link"/>
+    <child link="servo_wrist_roll"/>
+    <origin rpy="0 0 0" xyz="-0.004 0 0.098"/>
+  </joint>
+  <!--////////////////////////////////////////////////////////////////////////////////////-->
+  <!-- elbow pitch link -->
+  <link name="elbow_pitch_link">
+    <visual>
+      <origin rpy="3.14 0 0" xyz="-0.0265 0.0155 -0.015"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/mid-arm.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="3.14 0 0" xyz="-0.0265 0.0155 -0.015"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/mid-arm.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="elbow_pitch_joint" type="revolute">
+    <parent link="elbow_pan_link"/>
+    <child link="elbow_pitch_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.078"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" lower="-1.57" upper="2.00" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <!-- SERVO gripper pan motor-->
+  <link name="servo_gripper_pan">
+    <visual>
+      <origin rpy="3.14 0 3.14" xyz="-0.035 -0.016 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/Servo Motor.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="3.14 0 3.14" xyz="-0.035 -0.016 0"/>
+      <geometry>
+        <mesh filename="package://robot_arm/meshes/Servo Motor.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <gazebo reference="servo_gripper_pan">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="servo_joint4" type="fixed">
+    <parent link="elbow_pitch_link"/>
+    <child link="servo_gripper_pan"/>
+    <origin rpy="0 0 0" xyz="0 0 0.03"/>
+  </joint>
+  <!-- ////////////////////////////////////////////////////////////////////////////-->
+  <link name="gripper_pan_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <gazebo reference="gripper_pan_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <joint name="gripper_pan_joint" type="revolute">
+    <parent link="elbow_pitch_link"/>
+    <child link="gripper_pan_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.09"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <link name="gripper_pitch_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <gazebo reference="gripper_pitch_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <joint name="gripper_pitch_joint" type="revolute">
+    <parent link="gripper_pan_link"/>
+    <child link="gripper_pitch_link"/>
+    <origin rpy="0 1.57 0" xyz="0 0 0.02"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="100"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <!--////////////////////////////////////////////////////////////////-->
+  <joint name="left_gripper_joint" type="revolute">
+    <axis xyz="-1.0 0 0"/>
+    <limit effort="100.0" lower="0.15" upper="0.548" velocity="1"/>
+    <origin rpy="0 -1.57 0" xyz="0 0.01 0"/>
+    <parent link="gripper_pitch_link"/>
+    <child link="left_gripper"/>
+    <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-0.15" soft_upper_limit="0.0"/>
+    <dynamics damping="50" friction="1"/>
+  </joint>
+  <link name="left_gripper">
+    <visual>
+      <origin rpy="0 -1.57 0.0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+      <origin rpy="0 -1.57 0.0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="left_tip_joint" type="fixed">
+    <parent link="left_gripper"/>
+    <child link="left_tip"/>
+  </joint>
+  <link name="left_tip">
+    <visual>
+      <origin rpy="0 -1.57 0.0" xyz="0 0.00495 0.09137"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+      <origin rpy="0 -1.57 0.0" xyz="0 0.00495 0.09137"/>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="right_gripper_joint" type="revolute">
+    <axis xyz="1.0 0 0"/>
+    <limit effort="100.0" lower="0.15" upper="0.548" velocity="1"/>
+    <origin rpy="0 -1.57 0" xyz="0 -0.01 0"/>
+    <parent link="gripper_pitch_link"/>
+    <child link="right_gripper"/>
+    <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-0.15" soft_upper_limit="0.0"/>
+    <dynamics damping="50" friction="1"/>
+  </joint>
+  <link name="right_gripper">
+    <visual>
+      <origin rpy="0 -1.57 -3.14" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+      <origin rpy="0 -1.57 -3.14" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="right_tip_joint" type="fixed">
+    <parent link="right_gripper"/>
+    <child link="right_tip"/>
+  </joint>
+  <link name="right_tip">
+    <visual>
+      <origin rpy="0 -1.57 -3.14" xyz="0 -0.00495 0.09137"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+      <origin rpy="0 -1.57 -3.14" xyz="0 -0.00495 0.09137"/>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <!--///////////////////////////////////////////////////////////////// -->
+  <link name="hokuyo_sensor">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+  </link>
+  <joint name="hokuyo_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.07 0 0.08"/>
+    <parent link="chassis"/>
+    <child link="hokuyo_sensor"/>
+  </joint>
+  <gazebo reference="hokuyo_sensor">
+    <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+    <sensor name="chassis_hokuyo_sensor" type="ray">
+      <pose>0.025 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.57</min_angle>
+            <max_angle>1.57</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>10.0</max>
+          <resolution>0.001</resolution>
+        </range>
+      </ray>
+      <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_head_hokuyo_controller">
+        <topicName>/scan</topicName>
+        <frameName>hokuyo_sensor</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!-- Grasping frame -->
+  <link name="grasping_frame">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0001"/>
+      <cuboid_inertia mass="0.0001" x="0.001" y="0.001" z="0.001"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="100.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+      <material name="White"/>
+    </visual>
+  </link>
+  <joint name="grasping_frame_joint" type="fixed">
+    <parent link="gripper_pitch_link"/>
+    s
+      
+    <child link="grasping_frame"/>
+    <origin rpy="0 0 0" xyz="-0.1 0 0"/>
+  </joint>
+  <!-- //////////////////////////////////////////////////////////////// -->
+  <!-- Transmission for ROS CONTROL-->
+  <transmission name="shoulder_pan_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_pan_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="shoulder_pan_joint_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="shoulder_roll_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_roll_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="shoulder_roll_joint_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="elbow_pan_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_pan_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="elbow_pan_joint_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="elbow_pitch_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_pitch_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="elbow_pitch_joint_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="gripper_pan_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="gripper_pan_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="gripper_pan_joint_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="left_gripper_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_gripper_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_gripper_joint_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="right_gripper_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_gripper_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_gripper_joint_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="gripper_pitch_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="gripper_pitch_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="gripper_pitch_joint_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- ros_control plugin-->
+  <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+</robot>
+

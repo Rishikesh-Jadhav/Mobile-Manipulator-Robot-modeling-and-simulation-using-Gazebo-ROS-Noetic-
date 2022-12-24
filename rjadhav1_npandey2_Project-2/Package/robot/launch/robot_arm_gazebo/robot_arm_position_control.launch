@@ -1,0 +1,20 @@
+<launch>
+
+
+<!-- Load joint controller configuration from YAML file to parameter server -->
+<rosparam file="$(find robot_arm)/config/position_control.yaml" command="load"/>
+
+
+<!-- load the controllers -->
+<node name="robot_arm_position_controller_spawner" pkg="controller_manager" type="spawner"
+  respawn="true" output="screen" 
+   args="/Robot_Arm/Shoulder_pan_position_controller
+         /Robot_Arm/Shoulder_roll_position_controller
+         /Robot_Arm/Elbow_pan_position_controller
+         /Robot_Arm/Elbow_pitch_position_controller
+         /Robot_Arm/Gripper_pan_position_controller
+         /Robot_Arm/Gripper_pitch_position_controller
+      --shutdown-timeout 3"/>
+
+</launch>
+

@@ -1,0 +1,28 @@
+Robot_Arm:
+  # Position Controllers ---------------------------------------
+  Shoulder_pan_position_controller:
+    type: position_controllers/JointPositionController
+    joint: shoulder_pan_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  Shoulder_roll_position_controller:
+    type: position_controllers/JointPositionController
+    joint: shoulder_roll_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  Elbow_pan_position_controller:
+    type: position_controllers/JointPositionController
+    joint: elbow_pan_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  Elbow_pitch_position_controller:
+    type: position_controllers/JointPositionController
+    joint: elbow_pitch_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  Gripper_pan_position_controller:
+    type: position_controllers/JointPositionController
+    joint: gripper_pan_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  Gripper_pitch_position_controller:
+    type: position_controllers/JointPositionController
+    joint: gripper_pitch_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  
+

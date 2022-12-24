@@ -1,0 +1,4 @@
+Robot_Arm:
+  joint_state_controller1:
+    type: "joint_state_controller/JointStateController"
+    publish_rate: 50
