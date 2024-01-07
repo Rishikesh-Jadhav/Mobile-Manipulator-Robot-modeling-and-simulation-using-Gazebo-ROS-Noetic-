@@ -162,6 +162,7 @@ To spawn the bot in Gazebo and RViz in the designed world, use the following com
 
 ```bash
 roslaunch 04-diff_drive_robot_arm.launch
+```
 
 To spawn the bot in RViz with a slider to control the various joints of the robot, use the following command after navigating to the launch folder in the terminal:
 
