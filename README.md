@@ -168,17 +168,21 @@ To spawn the bot in RViz with a slider to control the various joints of the robo
 
 ```bash
 roslaunch view_demo.launch
+```
 
 To run these codes, open the scripts folder in the terminal and run the following commands for each script:
+
 ```bash
 python3 <name of the script to run>
+```
 
 Ensure that __roscore__ is running in the background.
 
 The following sequence of scripts should be run to obtain the pick and place of an object:
 
+```bash
 roslaunch 04-diff_drive_robot_arm.launch --> python3 diff_control.py --> python3 arm_control.py --> python3 grasp.py --> go_home.py
- 
+``` 
 
 ## 13. References
 1. Robot Modeling and Control, Mark W. Spong, Seth Hutchinson, and M. Vidyasagar
