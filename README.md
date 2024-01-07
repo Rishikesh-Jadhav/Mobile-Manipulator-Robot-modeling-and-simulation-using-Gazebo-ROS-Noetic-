@@ -1,9 +1,10 @@
 # Mobile-Manipulator-Robot-modeling-and-simulation-using-Gazebo-ROS-Noetic-
-Performed Pick and place operation using a differential drive Mobile Robot with a mounted robotic arm in Gazebo. Application - cleaning in compact and cluttered environments
-
-### Authors: Rishikesh Jadhav(UID:119256534) and Nishant Awdeshkumar Pandey(UID:119247556).
 
 ![CR-7 in Gazebo](Package/robot.png)
+
+Performed Pick and place operation using a differential drive Mobile Robot with a mounted robotic arm in Gazebo. Application - cleaning in compact and cluttered environments
+
+Authors: Rishikesh Jadhav(UID:119256534) and Nishant Awdeshkumar Pandey(UID:119247556).
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
