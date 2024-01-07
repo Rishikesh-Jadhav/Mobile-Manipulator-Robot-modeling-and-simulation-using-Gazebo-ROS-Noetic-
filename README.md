@@ -100,11 +100,17 @@ The differential drive mobile robot operates through a closed-loop mechanism, as
 
 For robot movement validation, the following videos are available:
 
-### 
-- Teleop: [![Teleop](https://img.youtube.com/vi/-0-Fz-cJO3w/0.jpg)](https://www.youtube.com/watch?v=-0-Fz-cJO3w)
-- Arm Control: [![Arm Control](https://img.youtube.com/vi/-7zCioQ0734/0.jpg)](https://www.youtube.com/watch?v=-7zCioQ0734)
-- Closed Loop Control: [![Closed Loop Control](https://img.youtube.com/vi/JkP_jU8V_Yg/0.jpg)](https://www.youtube.com/watch?v=JkP_jU8V_Yg)
-- RQT Steering: [![RQT Steering](https://img.youtube.com/vi/2xNp4E0TiQg/0.jpg)](https://www.youtube.com/watch?v=2xNp4E0TiQg)
+### Teleop 
+[![Teleop](https://img.youtube.com/vi/-0-Fz-cJO3w/0.jpg)](https://www.youtube.com/watch?v=-0-Fz-cJO3w)
+
+### Arm Control 
+[![Arm Control](https://img.youtube.com/vi/-7zCioQ0734/0.jpg)](https://www.youtube.com/watch?v=-7zCioQ0734)
+
+### Closed Loop Control 
+[![Closed Loop Control](https://img.youtube.com/vi/JkP_jU8V_Yg/0.jpg)](https://www.youtube.com/watch?v=JkP_jU8V_Yg)
+
+### RQT Steering 
+[![RQT Steering](https://img.youtube.com/vi/2xNp4E0TiQg/0.jpg)](https://www.youtube.com/watch?v=2xNp4E0TiQg)
 
 #### Pick and Place operation
 [![Pick and Place](https://img.youtube.com/vi/nk7jHL4xtvg/0.jpg)](https://www.youtube.com/watch?v=nk7jHL4xtvg)
