@@ -1,7 +1,7 @@
 # Mobile-Manipulator-Robot-modeling-and-simulation-using-Gazebo-ROS-Noetic-
 Performed Pick and place operation using a differential drive Mobile Robot with a mounted robotic arm in Gazebo. Application - cleaning in compact and cluttered environments
 
-### Authors: Rishikesh Jadhav(UID:119256534) and Nishant Awdeshkumar Pandey(UID:119247556).
+Authors: Rishikesh Jadhav(UID:119256534) and Nishant Awdeshkumar Pandey(UID:119247556).
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
@@ -21,19 +21,22 @@ Performed Pick and place operation using a differential drive Mobile Robot with 
 ## 1. Introduction
 Modeling a mobile robot (differential drive) with a robotic arm named CR-7. The goal is to create a versatile robot capable of cleaning spaces efficiently.
 
-![CR-7 in Gazebo](link-to-image)
+![CR-7 in Gazebo](Package/robot.png)
 
 
 ## 2. Process
 The project involved a series of analyses and processes, including the study of robot kinematics (inverse and forward), validation, and simulation in Gazebo and RViz. The derived equations were intended for practical applications such as goal navigation, object manipulation, and space cleaning.
 
 ### Project Pipeline
-![Process](link-to-image)
+![Process](Package/pipeline.png)
 
 
 ## 3. Robot Description
+
 Robot Type: MOBILE MANIPULATOR
 Total DOF (9) = Robotic arm DoF (6) + Mobile robot DoF (3)
+
+![Description](Package/robot_description.png)
 
 #### DIMENSIONS:
 - Chassis property(units): Length: 0.19, Width: 0.19, Height: 0.070
@@ -48,16 +51,17 @@ Total DOF (9) = Robotic arm DoF (6) + Mobile robot DoF (3)
 
 ## 4. Forward Kinematics Validation
 To validate forward kinematics, a video of the robot's movement in Gazebo and RViz is available Below
-![Forward Kinematics Validation](link-to-video)
 
+[![Forward Kinematics Validation](https://img.youtube.com/vi/eiZ5ZfvUhY8/0.jpg)](https://www.youtube.com/watch?v=eiZ5ZfvUhY8)
 
 ## 5. Inverse Kinematics Validation
 To validate inverse kinematics, a video of the robot's movement in Gazebo and RViz is available below 
-[Inverse Kinematics Validation](link-to-video).
+
+[![Inverse Kinematics Validation](https://img.youtube.com/vi/jIF_iJx5u1k/0.jpg)](https://www.youtube.com/watch?v=jIF_iJx5u1k)
 
 
 ## 6. Workspace Study
-![Dexterous Workspace](link-to-image)
+![Dexterous Workspace](Package/workspace.png)
 
 Maximum workspace of the arm is as follows:
 The above figure is obtained by selecting the angle limits as follows:
@@ -96,12 +100,15 @@ The differential drive mobile robot operates through a closed-loop mechanism, as
 ## 9. Gazebo and RViz Visualization
 
 For robot movement validation, the following videos are available:
-- Teleop: [link-to-teleop-video]
-- Arm Control: [link-to-arm-control-video]
-- Closed Loop Control: [link-to-closed-loop-video]
-- RQT Steering: [link-to-rqt-steering-video]
 
-For pick and place operation, refer to the video [here](link-to-video).
+### 
+- Teleop: [![Teleop](https://img.youtube.com/vi/-0-Fz-cJO3w/0.jpg)](https://www.youtube.com/watch?v=-0-Fz-cJO3w)
+- Arm Control: [![Arm Control](https://img.youtube.com/vi/-7zCioQ0734/0.jpg)](https://www.youtube.com/watch?v=-7zCioQ0734)
+- Closed Loop Control: [![Closed Loop Control](https://img.youtube.com/vi/JkP_jU8V_Yg/0.jpg)](https://www.youtube.com/watch?v=JkP_jU8V_Yg)
+- RQT Steering: [![RQT Steering](https://img.youtube.com/vi/2xNp4E0TiQg/0.jpg)](https://www.youtube.com/watch?v=2xNp4E0TiQg)
+
+#### Pick and Place operation
+[![Pick and Place](https://img.youtube.com/vi/nk7jHL4xtvg/0.jpg)](https://www.youtube.com/watch?v=nk7jHL4xtvg)
 
 
 ## 10. Problems Faced
