@@ -113,7 +113,7 @@ For robot movement validation, the following videos are available:
 ### RQT Steering 
 [![RQT Steering](https://img.youtube.com/vi/2xNp4E0TiQg/0.jpg)](https://www.youtube.com/watch?v=2xNp4E0TiQg)
 
-#### Pick and Place operation
+### Pick and Place operation
 [![Pick and Place](https://img.youtube.com/vi/nk7jHL4xtvg/0.jpg)](https://www.youtube.com/watch?v=nk7jHL4xtvg)
 
 
